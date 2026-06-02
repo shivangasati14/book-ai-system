@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Book Recommendation</title>
+</head>
+
+<body>
+
+    <h1>AI Book Recommendation System</h1>
+
+    <form method="POST">
+
+        <input type="text" name="book" placeholder="Enter Book Name">
+
+        <button type="submit">Recommend</button>
+
+    </form>
+
+    <hr>
+
+    {% if data %}
+
+        {% for book in data %}
+
+            <h3>{{ book[0] }}</h3>
+
+            <p>{{ book[1] }}</p>
+
+            <img src="{{ book[2] }}" width="150">
+
+            <hr>
+
+        {% endfor %}
+
+    {% endif %}
+
+</body>
+
+</html>
