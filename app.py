@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from database import conn, cursor
+from database import get_db_connection
 
 import pickle
 import numpy as np
