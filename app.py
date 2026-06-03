@@ -106,6 +106,7 @@ def home():
 
 @app.route("/add-favorite", methods=["POST"])
 def add_favorite():
+    conn, cursor = get_db_connection()
 
     data = request.json
 
@@ -125,9 +126,12 @@ def add_favorite():
     existing = cursor.fetchone()
 
     if existing:
-        return jsonify({
-        "message": "Already in favorites"
-        })
+       cursor.close()
+       conn.close()
+
+       return jsonify({
+          "message": "Already in favorites"
+       })
 
     cursor.execute(
         """
@@ -139,6 +143,8 @@ def add_favorite():
     )
 
     conn.commit()
+    cursor.close()
+    conn.close()
 
     return jsonify({
         "message": "Favorite Added"
@@ -146,6 +152,7 @@ def add_favorite():
 
 @app.route("/remove-favorite", methods=["POST"])
 def remove_favorite():
+    conn, cursor = get_db_connection()
 
     data = request.json
 
@@ -161,6 +168,8 @@ def remove_favorite():
     )
 
     conn.commit()
+    cursor.close()
+    conn.close()
 
     return jsonify({
         "message": "Favorite Removed"
@@ -169,6 +178,7 @@ def remove_favorite():
 
 @app.route("/favorites/<int:user_id>")
 def get_favorites(user_id):
+    conn, cursor = get_db_connection()
 
     cursor.execute(
         """
@@ -180,6 +190,8 @@ def get_favorites(user_id):
     )
 
     rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
 
     books = []
 
