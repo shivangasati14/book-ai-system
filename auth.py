@@ -1,11 +1,12 @@
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from database import conn, cursor
+from database import get_db_connection
 
 auth = Blueprint("auth", __name__)
 
 @auth.route("/register", methods=["POST"])
 def register():
+    conn, cursor = get_db_connection()
 
     data = request.json
 
@@ -25,6 +26,8 @@ def register():
         )
 
         conn.commit()
+        cursor.close()
+        conn.close()
         print("USER INSERTED")
 
         return jsonify({
@@ -41,6 +44,7 @@ def register():
 
 @auth.route("/login", methods=["POST"])
 def login():
+    conn, cursor = get_db_connection()
 
     data = request.json
 

@@ -1,15 +1,12 @@
-import os
 import psycopg2
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-
-
-conn = psycopg2.connect(DATABASE_URL)
-
-cursor = conn.cursor()
-
-print("✅ PostgreSQL Connected Successfully")
+def get_db_connection():
+    conn = psycopg2.connect(DATABASE_URL)
+    cursor = conn.cursor()
+    return conn, cursor

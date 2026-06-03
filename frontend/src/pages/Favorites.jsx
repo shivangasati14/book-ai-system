@@ -13,7 +13,7 @@ function Favorites() {
 
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/favorites/${user.user_id}`
+          `https://book-ai-system.onrender.com/favorites/${user.user_id}`
         );
 
         setFavorites(response.data);
@@ -29,7 +29,7 @@ function Favorites() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     try {
-      await axios.post("http://127.0.0.1:5000/remove-favorite", {
+      await axios.post("https://book-ai-system.onrender.com/remove-favorite", {
         user_id: user.user_id,
         title: title,
       });

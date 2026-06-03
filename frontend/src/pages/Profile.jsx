@@ -13,7 +13,7 @@ function Profile() {
 
       try {
         const response = await axios.get(
-          `http://127.0.0.1:5000/favorites/${user.user_id}`,
+          `https://book-ai-system.onrender.com/favorites/${user.user_id}`,
         );
 
         setFavoritesCount(response.data.length);

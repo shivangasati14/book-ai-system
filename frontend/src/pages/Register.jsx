@@ -16,7 +16,7 @@ function Register() {
 
   const handleRegister = async () => {
     try {
-      await axios.post("http://127.0.0.1:5000/register", {
+      await axios.post("https://book-ai-system.onrender.com/register", {
         name,
         email,
         password,

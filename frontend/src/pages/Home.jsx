@@ -18,7 +18,7 @@ function Home() {
   useEffect(() => {
     const fetchTrendingBooks = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:5000/trending");
+        const response = await axios.get("https://book-ai-system.onrender.com/trending");
 
         setTrendingBooks(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ function Home() {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/favorites/${user.user_id}`
+        `https://book-ai-system.onrender.com/favorites/${user.user_id}`
       );
 
       setFavorites(response.data);
@@ -65,7 +65,7 @@ function Home() {
 
     try {
       const response = await axios.get(
-        `http://127.0.0.1:5000/search?q=${value}`,
+        `https://book-ai-system.onrender.com/search?q=${value}`,
       );
 
       setSuggestions(response.data);
@@ -77,7 +77,7 @@ function Home() {
   const getRecommendations = async () => {
     setLoading(true);
     try {
-      const response = await axios.post("http://127.0.0.1:5000/recommend", {
+      const response = await axios.post("https://book-ai-system.onrender.com/recommend", {
         book: bookName,
       });
 
@@ -103,7 +103,7 @@ function Home() {
 
   try {
     await axios.post(
-      "http://127.0.0.1:5000/add-favorite",
+      "https://book-ai-system.onrender.com/add-favorite",
       {
         user_id: user.user_id,
         title: book.title,
@@ -129,7 +129,7 @@ const removeFavorite = async (title) => {
 
   try {
     await axios.post(
-      "http://127.0.0.1:5000/remove-favorite",
+      "https://book-ai-system.onrender.com/remove-favorite",
       {
         user_id: user.user_id,
         title: title,
