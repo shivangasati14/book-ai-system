@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -15,10 +16,13 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("https://book-ai-system.onrender.com/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://book-ai-system.onrender.com/login",
+        {
+          email,
+          password,
+        },
+      );
 
       localStorage.setItem("user", JSON.stringify(response.data));
 
@@ -70,6 +74,9 @@ function Login() {
       <br />
 
       <button onClick={handleLogin}>Login</button>
+      <p className="auth-link-text">
+        New user? <Link to="/register">Create an account</Link>
+      </p>
 
       {message && <p>{message}</p>}
     </div>

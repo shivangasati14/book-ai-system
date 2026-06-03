@@ -510,3 +510,17 @@ body {
     0 0 0 4px rgba(0,173,181,0.18),
     0 10px 22px rgba(0,173,181,0.35);
 }
+.auth-link-text {
+  margin-top: 18px;
+  color: #d1d5db;
+}
+
+.auth-link-text a {
+  color: #00adb5;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.auth-link-text a:hover {
+  text-decoration: underline;
+}
